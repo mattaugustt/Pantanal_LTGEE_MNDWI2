@@ -2,7 +2,7 @@
  * COMPARAÇÃO DE ÍNDICES HÍDRICOS NO PANTANAL
  * Autor: Matheus Augusto
  * E-mail: mataugusto1999@gmail.com
- * Ano: 2024
+ * Ano: 2025
  * 
  * Descrição:
  * Script autoral de análise comparativa entre diferentes formulações de índices hídricos:

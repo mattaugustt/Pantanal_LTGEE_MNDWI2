@@ -75,9 +75,9 @@ Map.addLayer(pontos_nao_mudou, {color: 'orange'}, 'Não Mudou', false);
 /*Commit / Adaptação: Matheus Augusto
   Email: mataugusto1999@gmail.com
   Repositório Original: https://github.com/hyinhe/GEE-codes/blob/master/Landsat_Sentinel_2_time_series_viewer.js
-  Data: 2024
+  Data: 2025
   Changes: 
-          1. Integração de dados de validação de campo/interpretação para o bioma Pantanal:
+          1. Integração de dados de validação de interpretação para o bioma Pantanal:
              importação e visualização de pontos amostrais unificados ('pontos_novos_validacao_pantanal')
              filtrados por classes de dinâmica (Classe 1 = Mudou [amarelo], Classe 2 = Não Mudou [laranja]).
           2. Adição de camada raster reclassificada de validação do LandTrendr ('ltgee_pantanal_validacao_corrigida')

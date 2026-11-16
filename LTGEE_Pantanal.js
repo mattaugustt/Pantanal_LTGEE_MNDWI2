@@ -18,7 +18,7 @@
 // Autor da Adaptação: Matheus Augusto
 // E-mail: mataugusto1999@gmail.com
 // Repositório Original: https://github.com/emapr/lt-gee
-// Data da Adaptação: 2024
+// Data da Adaptação: 2025
 //
 // Descrição das Adaptações:
 // 1. Substituição do módulo padrão pelo módulo customizado `LandTrendrCustom.js` 

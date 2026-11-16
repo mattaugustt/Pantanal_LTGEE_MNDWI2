@@ -22,7 +22,7 @@ MODIFICAÇÃO / ADAPTAÇÃO CUSTOMIZADA:
 Autor da Adaptação: Matheus Augusto
 E-mail: mataugusto1999@gmail.com
 Repositório / Documentação Original: https://area2.readthedocs.io/
-Data da Adaptação: 2024
+Data da Adaptação: 2026
 
 Descrição das Adaptações:
 1. Recorte espacial e restrição territorial ao bioma Pantanal:

@@ -2,7 +2,7 @@
  * EXTRAÇÃO DE TRAJETÓRIA TEMPORAL LANDTRENDR (MNDWI2)
  * Autor: Matheus Augusto
  * E-mail: mataugusto1999@gmail.com
- * Ano: 2024
+ * Ano: 2026
  * 
  * Descrição:
  * Script para extração e visualização gráfica de trajetórias temporais do LandTrendr

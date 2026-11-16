@@ -24,7 +24,7 @@
  * Repositório Original: https://github.com/emapr/lt-gee
  * Data da Adaptação: 2024
  * 
- * Comparação com o script original do eMapR/LT-GEE e índices incluídos:
+ * Índices incluídos:
  * 1. NDBI (Normalized Difference Built-up Index):
  *    - Equação: (SWIR1 - NIR) / (SWIR1 + NIR) -> (B5 - B4) / (B5 + B4)
  *    - Função: ndbiTransform (escalado por 1000)
@@ -47,7 +47,7 @@
  * - Inclusão dos índices no cálculo do `toExp` dentro de `ndfiTransform`.
  * - Implementação dos casos correspondentes no despachante de índices `calcIndex`.
  * - Configuração do sentido de perturbação no dicionário `indexFlipper` com valor -1
- *   para NDBI, UI, NDWI1, NDWI2 e MNDWI2 (para rastreamento de perda hídrica / recuo da água).
+ *   para NDBI, UI (para classificação de áreas urbanas), NDWI1, NDWI2 e MNDWI2 (para classificação de áreas hídricas).
  * - Atualização da interface gráfica `indexSelectPanel` para disponibilizar os índices na UI.
  * =============================================================================
  * 
