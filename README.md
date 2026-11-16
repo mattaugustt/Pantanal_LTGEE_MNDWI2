@@ -144,7 +144,7 @@ A seleção do índice espectral adotado neste estudo fundamenta-se na evoluçã
 | **NDWI** | Gao (1996) | NIR e SWIR | Monitoramento do conteúdo de água líquida na vegetação (estresse hídrico). | Não é específico para corpos d'água abertos; inclui reflectância de solo. |
 | **NDWI** | McFeeters (1996) | Green e NIR | Delimitação e realce de corpos d'água abertos. | Apresenta ruídos em áreas construídas e solos expostos (confusão espectral). |
 | **MNDWI** | Xu (2006) | Green e SWIR1 | Realce de água em ambientes heterogêneos e supressão de ruídos terrestres. | Dependência da resolução espectral/espacial do sensor na banda SWIR. |
-| **MNDWI2** | Xu (2006) adaptado | Green e SWIR2 | Máxima absorção hídrica e sensibilidade a lâminas rasas no Pantanal. | Hipótese avaliada por trajetórias temporais e validação temática. |
+| **MNDWI2** | Xu (2006) adaptado | Green e SWIR2 | Máxima absorção hídrica e sensibilidade a lâminas rasas e solos saturados no Pantanal. | Hipótese avaliada por trajetórias temporais e validação temática. |
 
 ---
 
