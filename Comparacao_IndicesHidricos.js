@@ -1,3 +1,21 @@
+/**
+ * COMPARAÇÃO DE ÍNDICES HÍDRICOS NO PANTANAL
+ * Autor: Matheus Augusto
+ * E-mail: mataugusto1999@gmail.com
+ * Ano: 2024
+ * 
+ * Descrição:
+ * Script autoral de análise comparativa entre diferentes formulações de índices hídricos:
+ * - NDWI (Gao, 1996): NIR e SWIR1
+ * - NDWI (McFeeters, 1996): Green e NIR
+ * - MNDWI (Xu, 2006): Green e SWIR1
+ * - MNDWI2: Green e SWIR2 (Xu modificado / adaptado)
+ * 
+ * Avaliação realizada sobre cena Landsat 8 (Surface Reflectance - Collection 2)
+ * durante o período de estiagem de 2023 no Pantanal, fundamentando a seleção do MNDWI2
+ * para as análises temporais no LandTrendr.
+ */
+
 // 1. Definição da Área de Interesse (Geometria pequena no Pantanal)
 var roi = ee.Geometry.Polygon([
   [[-56.6, -18.3], [-56.5, -18.3], [-56.5, -18.4], [-56.6, -18.4]]

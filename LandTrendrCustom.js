@@ -17,6 +17,40 @@
  * @author Robert Kennedy (Oregon State University)
  * MODIFIED 1/2022 Ben Roberts-Pierel (Oregon State University)
  * 
+ * =============================================================================
+ * MODIFICAÇÃO / ADAPTAÇÃO CUSTOMIZADA:
+ * Autor da Adaptação: Matheus Augusto
+ * E-mail: mataugusto1999@gmail.com
+ * Repositório Original: https://github.com/emapr/lt-gee
+ * Data da Adaptação: 2024
+ * 
+ * Comparação com o script original do eMapR/LT-GEE e índices incluídos:
+ * 1. NDBI (Normalized Difference Built-up Index):
+ *    - Equação: (SWIR1 - NIR) / (SWIR1 + NIR) -> (B5 - B4) / (B5 + B4)
+ *    - Função: ndbiTransform (escalado por 1000)
+ * 2. UI (Urban Index):
+ *    - Equação: (SWIR2 - NIR) / (SWIR2 + NIR) -> (B7 - B4) / (B7 + B4)
+ *    - Função: uiTransform (escalado por 1000)
+ * 3. NDWI1 (McFeeters, 1996):
+ *    - Equação: (Green - NIR) / (Green + NIR) -> (B2 - B4) / (B2 + B4)
+ *    - Função: ndwiTransform1 (escalado por 1000)
+ * 4. NDWI2 (Gao, 1996):
+ *    - Equação: (NIR - SWIR2) / (NIR + SWIR2) -> (B4 - B7) / (B4 + B7)
+ *    - Função: ndwiTransform2 (escalado por 1000)
+ * 5. MNDWI2 (Xu, 2006 modificado):
+ *    - Equação: (Green - SWIR2) / (Green + SWIR2) -> (B2 - B7) / (B2 + B7)
+ *    - Função: mndwiTransform (escalado por 1000)
+ *    - Nota do autor: Utilizado SWIR2 em substituição ao SWIR1 por capturar
+ *      com maior precisão os corpos d'água e o estresse hídrico no Pantanal.
+ * 
+ * Integrações no pipeline do LandTrendr:
+ * - Inclusão dos índices no cálculo do `toExp` dentro de `ndfiTransform`.
+ * - Implementação dos casos correspondentes no despachante de índices `calcIndex`.
+ * - Configuração do sentido de perturbação no dicionário `indexFlipper` com valor -1
+ *   para NDBI, UI, NDWI1, NDWI2 e MNDWI2 (para rastreamento de perda hídrica / recuo da água).
+ * - Atualização da interface gráfica `indexSelectPanel` para disponibilizar os índices na UI.
+ * =============================================================================
+ * 
  * @description This file contains functions for working with the LandTrendr
  * change detection algorithm in Google Earth Engine. For information on
  * LandTrendr and usage of functions in this file see

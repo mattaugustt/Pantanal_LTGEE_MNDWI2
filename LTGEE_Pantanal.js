@@ -12,6 +12,28 @@
 //         Robert Kennedy | rkennedy@coas.oregonstate.edu
 // parameter definitions: https://emapr.github.io/LT-GEE/api.html#getchangemap
 // website: https://github.com/eMapR/LT-GEE
+//
+// =============================================================================
+// MODIFICAÇÃO / ADAPTAÇÃO CUSTOMIZADA:
+// Autor da Adaptação: Matheus Augusto
+// E-mail: mataugusto1999@gmail.com
+// Repositório Original: https://github.com/emapr/lt-gee
+// Data da Adaptação: 2024
+//
+// Descrição das Adaptações:
+// 1. Substituição do módulo padrão pelo módulo customizado `LandTrendrCustom.js` 
+//    (`users/mataugusto1999/TCC:LandTrendrCustom.js`), habilitando suporte aos índices
+//    incluídos por Matheus Augusto, especialmente o MNDWI2 (Xu modificado).
+// 2. Delimitação espacial para o bioma Pantanal (`projects/ee-mattaugustt/assets/Pantanal`).
+// 3. Exportação automatizada dos limites vetoriais do Pantanal em formato Shapefile (SHP).
+// 4. Configuração da série temporal para 40 anos (1984 a 2024), com janela sazonal restrita ao
+//    período de estiagem/seca (20 de maio a 20 de setembro) para mitigar nebulosidade e captar 
+//    o estresse hídrico e a retração dos corpos d'água.
+// 5. Parametrização para rastreamento de perda hídrica (`delta: 'loss'`) com magnitude > 200 via MNDWI2.
+// 6. Extração e amostragem espacial das bandas do mapa de mudanças exportadas para CSV no Google Drive.
+// 7. Exportação da imagem raster recortada do mapa de mudanças (EPSG:4674 - SIRGAS 2000).
+// 8. Rotina para cálculo e exibição da área total de estudo (m² e km²).
+// =============================================================================
 // notes: 
 //   - you must add the LT-GEE API to your GEE account to run this script. 
 //     Visit this URL to add it:

@@ -1,3 +1,16 @@
+/**
+ * EXTRAÇÃO DE TRAJETÓRIA TEMPORAL LANDTRENDR (MNDWI2)
+ * Autor: Matheus Augusto
+ * E-mail: mataugusto1999@gmail.com
+ * Ano: 2024
+ * 
+ * Descrição:
+ * Script para extração e visualização gráfica de trajetórias temporais do LandTrendr
+ * utilizando o módulo customizado LandTrendrCustom.js com o índice MNDWI2.
+ * Realiza a amostragem de pontos de mudança e plota a série temporal natural (desfazendo
+ * a inversão de sinal interna) confrontando os valores originais e ajustados (fitted).
+ */
+
 // --- IMPORTAÇÃO ---
 var ltgee = require('users/mataugusto1999/TCC:LandTrendrCustom.js');
 var pontos_mudanca = ee.FeatureCollection("projects/ee-mattaugustt/assets/mudou_pantanal");

@@ -72,6 +72,25 @@ Map.addLayer(pontos_nao_mudou, {color: 'orange'}, 'Não Mudou', false);
           Names Spring and Autumn were changed to Rain season and Dry season
 */
 
+/*Commit / Adaptação: Matheus Augusto
+  Email: mataugusto1999@gmail.com
+  Repositório Original: https://github.com/hyinhe/GEE-codes/blob/master/Landsat_Sentinel_2_time_series_viewer.js
+  Data: 2024
+  Changes: 
+          1. Integração de dados de validação de campo/interpretação para o bioma Pantanal:
+             importação e visualização de pontos amostrais unificados ('pontos_novos_validacao_pantanal')
+             filtrados por classes de dinâmica (Classe 1 = Mudou [amarelo], Classe 2 = Não Mudou [laranja]).
+          2. Adição de camada raster reclassificada de validação do LandTrendr ('ltgee_pantanal_validacao_corrigida')
+             e sobreposição vetorial do limite do bioma Pantanal.
+          3. Reconfiguração da localização inicial do mapa para coordenadas centrais no Pantanal (-56.2296, -18.0500).
+          4. Extensão do período de análise temporal das coleções Landsat (L4, L5, L7 e L8) e Sentinel-2 para 1985-2024.
+          5. Implementação das rotinas de cálculo do índice hídrico MNDWI2 (Xu, 2006 adaptado com bandas Green e SWIR2)
+             para coleções Landsat 8 (SR_B3 e SR_B7), Landsat 4/5/7 (B2 e B7) e Sentinel-2 TOA (B3 e B12).
+          6. Customização dos painéis cartográficos comparativos para renderizar o MNDWI2 com rampa de cores temática
+             (azul = água, branco = úmido, vermelho = seco) para períodos de contraste histórico (1985-1999 vs 2010-2020).
+          7. Incorporação do gráfico de perfil temporal do MNDWI2 ('mndwi2Chart') no painel interativo de inspeção.
+*/
+
 ////Parameters definition 
 //pick up an initial location
   var locat = ee.Geometry.Point(-56.229634530587695, -18.050042610626893); //point we have discussed
