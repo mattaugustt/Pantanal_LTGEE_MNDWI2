@@ -121,11 +121,56 @@ A partir da análise comparativa direta entre o `LandTrendr.js` original do eMap
 
 ---
 
-## 🌊 Por que o MNDWI2 ($\text{Green}$ e $\text{SWIR2}$)?
+## 🌊 Fundamentação Teórica: Seleção do Índice Espectral (MNDWI2) e Análise de Tendências
 
-Na literatura tradicional de sensoriamento remoto, o MNDWI proposto por Xu (2006) utiliza o $\text{SWIR1}$ ($\approx 1.57 - 1.65\,\mu m$). No entanto, para o bioma Pantanal, a substituição pelo canal $\text{SWIR2}$ ($\approx 2.11 - 2.29\,\mu m$) demonstrou vantagens técnicas:
-* **Maior coeficiente de absorção da água:** A água apresenta absorção quase total no infravermelho de ondas curtas mais longo ($\text{SWIR2}$), resultando em valores de refletância próximos a zero.
-* **Redução de confusão espectral:** Durante o período de estiagem no Pantanal, a abundância de biomassa vegetal seca/senescente e solos arenosos expostos gera reflectâncias elevadas que, no $\text{SWIR1}$, podem se sobrepor a lâminas d'água rasas ou túrbidas. O $\text{SWIR2}$ propicia maior contraste espectral na interface terra-água.
+A seleção do índice espectral adotado neste estudo fundamenta-se na evolução dos índices de sensoriamento remoto de corpos hídricos e na análise comparativa de suas respostas físicas, conforme sintetizado a seguir:
+
+### 1. Evolução Metodológica dos Índices de Água
+
+* **NDWI de Gao (1996):**
+  $$\text{NDWI}_{\text{Gao}} = \frac{\rho_{\text{NIR}} - \rho_{\text{SWIR}}}{\rho_{\text{NIR}} + \rho_{\text{SWIR}}}$$
+  Proposto especificamente para estimar a água líquida contida na vegetação (turgidez foliar e estresse hídrico do dossel). A reflectância no infravermelho de ondas curtas (SWIR) responde ao conteúdo interno de água das folhas, enquanto o infravermelho próximo (NIR) é governado pela estrutura do mesofilo foliar. Como não foi concebido para feições aquáticas em superfícies abertas e não elimina a reflectância do solo de fundo, sua aplicação é restrita a estudos fisiológicos da cobertura vegetal.
+
+* **NDWI de McFeeters (1996):**
+  $$\text{NDWI}_{\text{McFeeters}} = \frac{\rho_{\text{Green}} - \rho_{\text{NIR}}}{\rho_{\text{Green}} + \rho_{\text{NIR}}}$$
+  Desenvolvido para delinear corpos d'água abertos explorando a premissa de que a água absorve intensamente no NIR e apresenta maior reflectância no Verde. Embora realce corpos hídricos com valores positivos, o NDWI clássico apresenta limitações severas em paisagens heterogêneas: superfícies urbanizadas, solos expostos secos e vegetação senescente frequentemente geram valores positivos, resultando em ruídos de fundo e confusão espectral.
+
+* **MNDWI de Xu (2006):**
+  $$\text{MNDWI}_{\text{Xu}} = \frac{\rho_{\text{Green}} - \rho_{\text{SWIR1}}}{\rho_{\text{Green}} + \rho_{\text{SWIR1}}}$$
+  Xu (2006) introduziu a substituição da banda NIR pelo canal SWIR ($\approx 1.57 - 1.65\,\mu m$). Como construções e solos expostos refletem muito mais intensamente no SWIR do que no NIR, superfícies não aquáticas passam a assumir valores significativamente negativos no MNDWI, enquanto os corpos d'água retêm valores positivos destacados. Isso ampliou drasticamente a separabilidade de alvos.
+
+| Índice | Autor(es) | Bandas Espectrais | Objetivo Principal | Limitação Principal |
+| :--- | :--- | :--- | :--- | :--- |
+| **NDWI** | Gao (1996) | NIR e SWIR | Monitoramento do conteúdo de água líquida na vegetação (estresse hídrico). | Não é específico para corpos d'água abertos; inclui reflectância de solo. |
+| **NDWI** | McFeeters (1996) | Green e NIR | Delimitação e realce de corpos d'água abertos. | Apresenta ruídos em áreas construídas e solos expostos (confusão espectral). |
+| **MNDWI** | Xu (2006) | Green e SWIR1 | Realce de água em ambientes heterogêneos e supressão de ruídos terrestres. | Dependência da resolução espectral/espacial do sensor na banda SWIR. |
+| **MNDWI2** | Xu (2006) adaptado | Green e SWIR2 | Máxima absorção hídrica e sensibilidade a lâminas rasas no Pantanal. | Hipótese avaliada por trajetórias temporais e validação temática. |
+
+---
+
+### 2. A Escolha do MNDWI2 ($\text{Green}$ e $\text{SWIR2}$) no Bioma Pantanal
+
+No Pantanal, a substituição da banda SWIR 1 pela SWIR 2 ($\approx 2.11 - 2.29\,\mu m$) — originando a formulação **MNDWI2**:
+$$\text{MNDWI2} = \frac{\rho_{\text{Green}} - \rho_{\text{SWIR2}}}{\rho_{\text{Green}} + \rho_{\text{SWIR2}}}$$
+fundamenta-se na **maior capacidade de absorção da radiação pela água nessa faixa espectral**, uma vez que o SWIR 2 exibe coeficientes de absorção hídrica consideravelmente mais elevados do que o SWIR 1.
+
+No contexto pantaneiro, essa escolha é adotada como **hipótese metodológica** para ampliar a sensibilidade às variações sutis do conteúdo hídrico superficial, sobretudo durante a estiagem, quando ocorre a transição entre superfícies saturadas, lâminas d'água rasas/túrbidas e solos dessecados com biomassa seca. O script [`Comparacao_IndicesHidricos.js`](file:///c:/Users/matta/Desktop/Pantanal_LTGEE_MNDWI2/Comparacao_IndicesHidricos.js) foi desenhado justamente para evidenciar visual e quantitativamente essas distinções entre os quatro índices em uma mesma cena Landsat no bioma.
+
+---
+
+### 3. Inviabilidade de Limiares Fixos (*Thresholds*) e a Vantagem da Abordagem Temporal (LandTrendr)
+
+Apesar da eficácia do MNDWI, a literatura internacional recente comprova que **a definição de um limiar estático de corte (*threshold*, como o teórico valor 0) é inviável em áreas úmidas complexas**:
+
+| Autores (Ano) | Área de Estudo | Sensor / Satélite | Limiar (*Threshold*) Encontrado |
+| :--- | :--- | :--- | :---: |
+| **PENA-REGUEIRO et al. (2023)** | Tablas de Daimiel (Espanha) | TM (Landsat 5)<br>OLI (Landsat 8) | $-0,15$<br>$-0,25$ |
+| **OGILVIE et al. (2020)** | Rio Senegal (África) | ETM+ (Landsat 7)<br>OLI (Landsat 8) | $-0,16$ a $0,09$<br>$0,08$ a $0,24$ |
+
+Fatores como vegetação submersa, macrófitas, turbidez, profundidade da coluna d'água e discrepâncias radiométricas entre diferentes gerações de sensores (TM, ETM+, OLI) fazem com que os valores ótimos de separação oscilem fortemente (inclusive adentrando faixas negativas em áreas alagadas).
+
+**Por que o LandTrendr é a solução ideal para este problema?**
+A aplicação de limiares fixos em séries temporais multidecadais (40 anos) introduziria graves distorções e vieses (subestimando ou superestimando a água conforme o satélite e a estação). Em contrapartida, o algoritmo **LandTrendr não depende de limiares fixos de corte em imagens individuais**: ele modela a **trajetória espectral contínua do pixel** ao longo de quatro décadas, decompondo-a em segmentos lineares e identificando a magnitude e o ano de início de perturbações consistentes (`delta: 'loss'`, `mag > 200`). Isso garante robustez contra flutuações radiométricas interanuais e captura de forma fidedigna a dessecação e os pulsos hídricos no Pantanal.
 
 ---
 
@@ -143,6 +188,19 @@ Na literatura tradicional de sensoriamento remoto, o MNDWI proposto por Xu (2006
      - Limite do Pantanal: `projects/.../assets/Pantanal`
      - Pontos de validação: `projects/.../assets/pontos_novos_validacao_pantanal`
 4. **Execução:** Copie e cole os scripts no *Earth Engine Code Editor* e clique em **Run**. Acompanhe os gráficos e inicie as tarefas de exportação na aba **Tasks**.
+
+---
+
+## 📚 Referências Bibliográficas
+
+* **Cochran, W. G.** (2007). *Sampling techniques*. John Wiley & Sons.
+* **Gao, B. C.** (1996). NDWI—A normalized difference water index for remote sensing of vegetation liquid water from space. *Remote Sensing of Environment*, 58(3), 257-266.
+* **Kennedy, R. E., Yang, Z., & Cohen, W. B.** (2010). Detecting trends in forest disturbance and recovery using yearly Landsat time series: 1. LandTrendr—Temporal segmentation algorithms. *Remote Sensing of Environment*, 114(12), 2897-2910.
+* **McFeeters, S. K.** (1996). The use of the Normalized Difference Water Index (NDWI) in the delineation of open water features. *International Journal of Remote Sensing*, 17(7), 1425-1432.
+* **Ogilvie, A., et al.** (2020). Multi-sensor normalized difference water index thresholding for water body extraction in floodplains. *Remote Sensing*, 12(18), 3020.
+* **Olofsson, P., Foody, G. M., Herold, M., Stehman, S. V., Woodcock, C. E., & Wulder, M. A.** (2014). Good practices for estimating area and assessing accuracy of land change. *Remote Sensing of Environment*, 148, 42-57.
+* **Pena-Regueiro, J., et al.** (2023). Reconstructing long-term inundation dynamics in complex wetlands using Landsat time series and dynamic thresholds. *Journal of Hydrology*, 617, 129035.
+* **Xu, H.** (2006). Modification of normalised difference water index (MNDWI) to enhance open water features in remotely sensed imagery. *International Journal of Remote Sensing*, 27(14), 3025-3033.
 
 ---
 
