@@ -16,6 +16,28 @@ Last edited: Feburary 9th, 2019
 Authors: Eric Bullock, Pontus Olofsson
 
 Documentation: https://area2.readthedocs.io/
+ 
+==========================================================================================
+MODIFICAÇÃO / ADAPTAÇÃO CUSTOMIZADA:
+Autor da Adaptação: Matheus Augusto
+E-mail: mataugusto1999@gmail.com
+Repositório / Documentação Original: https://area2.readthedocs.io/
+Data da Adaptação: 2024
+
+Descrição das Adaptações:
+1. Recorte espacial e restrição territorial ao bioma Pantanal:
+   - Carregamento do limite vetorial ('projects/ee-mattaugustt/assets/Pantanal').
+   - Aplicação de máscara e corte espacial (.clip(pantanal)) na imagem de estratificação
+     durante a função upload(), garantindo que a alocação amostral seja estritamente
+     confinada à área de estudo pantaneira.
+2. Parametrização para a classificação de validação da dinâmica hídrica / uso da terra.
+3. Extração explícita e estruturada de coordenadas geográficas:
+   - Mapeamento sobre a FeatureCollection gerada por stratifiedSample(), recuperando 
+     explicitamente 'lat' e 'lon' via .geometry().coordinates() e anexando-os como atributos.
+4. Pipeline automatizado de exportação dupla da amostragem estratificada:
+   - Exportação em formato tabular (CSV) para o Google Drive ('sample_csv').
+   - Exportação direta como Asset no Earth Engine ('sample_asset').
+==========================================================================================
 
 Example dataset, pixel values:
 1. Forest
